@@ -1,16 +1,50 @@
-# truelog
+---
 
-A new Flutter project.
+# TrueLog - Note-Taking App
 
-## Getting Started
+TrueLog is a simple and intuitive note-taking app built with Flutter. The app provides users with an easy way to organize and manage their notes, with additional features such as a calendar view to track important dates and a settings menu for personalization.
 
-This project is a starting point for a Flutter application.
+## Features
 
-A few resources to get you started if this is your first Flutter project:
+- **Note-Taking Interface**: Create, edit, and delete notes.
+- **Calendar View**: Track important dates and schedule tasks.
+- **Settings Menu**: Choose from options like 'Select' and 'Feedback'.
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
+## Installation
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+To run this project locally, follow these steps:
+
+1. Clone the repository:
+   ```bash
+   git clone https://github.com/<your-username>/TrueLog.git
+   ```
+
+2. Navigate to the project directory:
+   ```bash
+   cd TrueLog
+   ```
+
+3. Install the dependencies:
+   ```bash
+   flutter pub get
+   ```
+
+4. Run the app:
+   ```bash
+   flutter run
+   ```
+
+## Usage
+
+After running the app, you can start creating and managing your notes. You can also view the calendar for upcoming tasks and adjust settings through the menu.
+
+## Contributing
+
+Feel free to fork the repository, submit pull requests, or open issues for suggestions and improvements.
+
+## License
+
+This project is open-source and available under the [MIT License](LICENSE).
+
+---
+
