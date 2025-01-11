@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:truelog/pages/info_screen.dart';
 import 'package:truelog/pages/add_note.dart';
+import 'package:truelog/pages/feedback.dart';
 
 void main() => runApp(MyApp());
 
@@ -13,7 +13,7 @@ class MyApp extends StatelessWidget {
       home: HomeScreen(),
       routes: {
         '/addnote': (context) => AddNoteScreen(),
-        '/infoscreen': (context) => InfoScreen()
+        '/feedback': (context) => FeedBack()
       },
     );
   }
@@ -40,10 +40,58 @@ class HomeScreen extends StatelessWidget {
                 color: Color.fromARGB(117, 103, 101, 101),
                 borderRadius: BorderRadius.all(Radius.circular(10)),
               ),
-              child: IconButton(
-                icon: Icon(Icons.more_horiz),
-                onPressed: () {
-                  Navigator.pushNamed(context, '/infoscreen');
+              child: PopupMenuButton(
+                onSelected: (int value) {
+                  if (value == 1) {}
+                  if (value == 2) {
+                    Navigator.pushNamed(context, '/feedback');
+                  }
+                },
+                offset: Offset(0, 25),
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(25.0),
+                ),
+                color: const Color.fromARGB(248, 38, 35, 35),
+                child: Icon(Icons.more_horiz),
+                itemBuilder: (BuildContext context) {
+                  return [
+                    PopupMenuItem(
+                        value: 1,
+                        child: Row(
+                          children: [
+                            Container(
+                              child: Icon(
+                                Icons.check,
+                                size: 20,
+                                color: Colors.black,
+                              ),
+                              decoration: BoxDecoration(
+                                  color:
+                                      const Color.fromARGB(215, 255, 255, 255),
+                                  borderRadius:
+                                      BorderRadius.all(Radius.circular(15))),
+                            ),
+                            Padding(
+                              padding: EdgeInsets.only(left: 7),
+                              child: Text("Select"),
+                            )
+                          ],
+                        )),
+                    PopupMenuItem(
+                        value: 2,
+                        child: Row(
+                          children: [
+                            Icon(
+                              Icons.favorite,
+                              color: Colors.red,
+                            ),
+                            Padding(
+                              padding: EdgeInsets.only(left: 4),
+                              child: Text("Feedback/contributions"),
+                            )
+                          ],
+                        ))
+                  ];
                 },
               ),
             ),
