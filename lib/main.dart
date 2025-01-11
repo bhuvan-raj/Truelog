@@ -106,6 +106,7 @@ class HomeScreen extends StatelessWidget {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
+              Image.asset('assets/main_image.jpg'),
               SizedBox(height: 20),
               Text(
                 'Create your first note!',
