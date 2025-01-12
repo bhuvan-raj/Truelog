@@ -1,3 +1,5 @@
+// ignore_for_file: sort_child_properties_last
+
 import 'package:flutter/material.dart';
 import 'package:truelog/pages/add_note.dart';
 import 'package:truelog/pages/feedback.dart';
