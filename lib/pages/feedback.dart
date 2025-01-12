@@ -1,15 +1,19 @@
 import 'package:flutter/material.dart';
+import 'package:truelog/pages/bottompart.dart';
 
 class FeedBack extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
+    final screenH = MediaQuery.of(context).size.height;
+    final screenW = MediaQuery.of(context).size.width;
+
     return Scaffold(
       appBar: AppBar(
         automaticallyImplyLeading: false, // Remove the default back button
         backgroundColor: const Color.fromARGB(117, 103, 101, 101),
         elevation: 0,
         title: Text(
-          'TrueLog',
+          'Truelog',
           style: TextStyle(
             fontSize: 20,
             fontWeight: FontWeight.bold,
@@ -25,6 +29,27 @@ class FeedBack extends StatelessWidget {
       ),
       body: Stack(
         children: [
+          Positioned(
+            left: 0,
+            right: 0,
+            top: screenH * 0.325,
+            child: Container(
+              padding: const EdgeInsets.all(20),
+              decoration: BoxDecoration(
+                color: Colors.grey[800],
+                borderRadius: BorderRadius.circular(30),
+              ),
+              child: Text(
+                "Need help with TrueLog? We're here for you! If you're experiencing any issues or have questions, feel free to reach out to us.Our Social Media handles are given below",
+                textAlign: TextAlign.justify,
+                style: TextStyle(
+                  fontWeight: FontWeight.bold,
+                  color: Colors.white,
+                  fontSize: screenH * 0.02,
+                ),
+              ),
+            ),
+          ),
           Container(
             color: const Color.fromARGB(117, 103, 101, 101),
             padding: const EdgeInsets.symmetric(horizontal: 1),
@@ -39,78 +64,27 @@ class FeedBack extends StatelessWidget {
                   children: [
                     Image.asset(
                       'assets/crowned_boy.png',
-                      height: 100,
-                      width: 80,
+                      height: screenH * 0.30,
+                      width: screenW * 0.20,
                     ),
-                    Image.asset(
-                      'assets/boy.png',
-                      height: 200,
-                      width: 60,
+                    const SizedBox(
+                      height: 30,
+                      width: 200,
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.only(top: 15.0),
+                      child: Image.asset(
+                        'assets/boy.png',
+                        height: screenH * 0.30,
+                        width: screenW * 0.20,
+                      ),
                     ),
                   ],
-                ),
-                const SizedBox(height: 20),
-                Container(
-                  padding: const EdgeInsets.all(20),
-                  decoration: BoxDecoration(
-                    color: Colors.grey[800],
-                    borderRadius: BorderRadius.circular(30),
-                  ),
-                  child: const Text(
-                    "Need help with TrueLog? We're here for you! If you're experiencing any issues or have questions, feel free to reach out to us. support@truelogapp.com",
-                    textAlign: TextAlign.center,
-                    style: TextStyle(
-                      fontWeight: FontWeight.bold,
-                      color: Colors.white,
-                      fontSize: 14,
-                    ),
-                  ),
                 ),
               ],
             ),
           ),
-          Align(
-            //social media icons
-            alignment: Alignment.bottomCenter,
-            child: Padding(
-              padding: const EdgeInsets.only(bottom: 20),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                children: [
-                  IconButton(
-                    icon: Image.asset(
-                      'assets/twitter.png',
-                      height: 45,
-                      width: 60,
-                    ),
-                    onPressed: () {
-                      // Add action for Twitter
-                    },
-                  ),
-                  IconButton(
-                    icon: Image.asset(
-                      'assets/insta.png',
-                      height: 50, // Resize social media icon
-                      width: 70,
-                    ),
-                    onPressed: () {
-                      // Add action for Instagram
-                    },
-                  ),
-                  IconButton(
-                    icon: Image.asset(
-                      'assets/gmail.png',
-                      height: 50, // Resize social media icon
-                      width: 50,
-                    ),
-                    onPressed: () {
-                      // Add action for Gmail
-                    },
-                  ),
-                ],
-              ),
-            ),
-          ),
+          Bottompart()
         ],
       ),
     );
