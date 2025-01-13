@@ -4,11 +4,72 @@ class AddNoteScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Color.fromARGB(
+          117, 103, 101, 101), // Background Darkness intensity reduce cheyan
       appBar: AppBar(
-        title: const Text('Add Note'),
+        backgroundColor: Color.fromARGB(117, 103, 101, 101),
+        leading: IconButton(
+          icon: const Icon(Icons.arrow_back_ios_rounded),
+          onPressed: () {
+            Navigator.pop(context); // Return to the home screen
+          },
+        ),
+        actions: [
+          Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: Container(
+              decoration: BoxDecoration(
+                  color: Color.fromARGB(132, 118, 113, 113),
+                  borderRadius: BorderRadius.circular(15)),
+              child: IconButton(
+                icon: const Icon(Icons.save),
+                onPressed: () {
+                  // Save the note (implement your save logic)
+                  debugPrint(
+                      'Save button click ayitund'); //to check whether the save button is working or not
+                },
+              ),
+            ),
+          ),
+        ],
       ),
-      body: Center(
-        child: Text('This is the Add Note page.'),
+      body: Padding(
+        padding: const EdgeInsets.all(16.0), // Add padding
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            //Title insert stalam
+            TextField(
+              style: const TextStyle(
+                fontSize: 28,
+                color: Colors.white,
+              ),
+              decoration: const InputDecoration(
+                hintText: 'Title',
+                hintStyle: TextStyle(fontSize: 28, color: Colors.grey),
+                border: InputBorder.none,
+              ),
+            ),
+            const SizedBox(
+                height: 10), // space between title and type something
+            // Note body input field
+            Expanded(
+              child: TextField(
+                maxLines: null,
+                keyboardType: TextInputType.multiline,
+                style: const TextStyle(
+                  fontSize: 18,
+                  color: Colors.white,
+                ),
+                decoration: const InputDecoration(
+                  hintText: 'Type something...',
+                  hintStyle: TextStyle(fontSize: 18, color: Colors.grey),
+                  border: InputBorder.none,
+                ),
+              ),
+            ),
+          ],
+        ),
       ),
     );
   }
