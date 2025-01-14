@@ -1,6 +1,15 @@
 import 'package:flutter/material.dart';
 
 class AddNoteScreen extends StatelessWidget {
+  final controller_title;
+  final controller_note;
+  Function()? onSaved;
+  AddNoteScreen({
+    super.key,
+    required this.controller_note,
+    required this.controller_title,
+    required this.onSaved
+  });
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -23,11 +32,7 @@ class AddNoteScreen extends StatelessWidget {
                   borderRadius: BorderRadius.circular(15)),
               child: IconButton(
                 icon: const Icon(Icons.save),
-                onPressed: () {
-                  // Save the note (implement your save logic)
-                  debugPrint(
-                      'Save button click ayitund'); //to check whether the save button is working or not
-                },
+                onPressed: onSaved, // Save the note (implement your save logic)
               ),
             ),
           ),
@@ -40,6 +45,7 @@ class AddNoteScreen extends StatelessWidget {
           children: [
             //Title insert stalam
             TextField(
+              controller: controller_title,
               style: const TextStyle(
                 fontSize: 28,
                 color: Colors.white,
@@ -55,6 +61,7 @@ class AddNoteScreen extends StatelessWidget {
             // Note body input field
             Expanded(
               child: TextField(
+                controller: controller_note,
                 maxLines: null,
                 keyboardType: TextInputType.multiline,
                 style: const TextStyle(
