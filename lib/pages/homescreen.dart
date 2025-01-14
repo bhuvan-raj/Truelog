@@ -29,8 +29,12 @@ class _HomeScreenState extends State<HomeScreen> {
   void onSaved(String? title, String? note) {
     setState(() {
       db.notes.add([title, note]);
+      _controller_title.clear();
+      _controller_note.clear();
+      index = 1;
     });
-    
+    Navigator.of(context).pop();
+    db.updateData;
   }
 
   @override
@@ -121,8 +125,9 @@ class _HomeScreenState extends State<HomeScreen> {
                   builder: (context) => AddNoteScreen(
                       controller_note: _controller_note,
                       controller_title: _controller_title,
-                      onSaved: onSaved(
-                          _controller_note.text, _controller_title.text))));
+                      onSaved: (title, note) {
+                        onSaved(title, note);
+                      })));
         },
         child: Icon(Icons.add),
         backgroundColor: Colors.grey[850],

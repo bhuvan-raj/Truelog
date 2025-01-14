@@ -4,8 +4,8 @@ import 'package:truelog/db/database.dart';
 class AddNoteScreen extends StatelessWidget {
   final controller_title;
   final controller_note;
-  VoidCallback onSaved;
   Database db = new Database();
+  final void Function(String?, String?)? onSaved;
   AddNoteScreen(
       {super.key,
       required this.controller_note,
@@ -33,7 +33,11 @@ class AddNoteScreen extends StatelessWidget {
                   borderRadius: BorderRadius.circular(15)),
               child: IconButton(
                 icon: const Icon(Icons.save),
-                onPressed:onSaved(), // Save the note (implement your save logic)
+                onPressed: () {
+          if (onSaved != null) {
+            onSaved!(controller_title.text, controller_note.text); // Pass values
+          }
+        }, // Save the note (implement your save logic)
               ),
             ),
           ),
