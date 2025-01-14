@@ -26,13 +26,17 @@ class _HomeScreenState extends State<HomeScreen> {
     super.initState();
   }
 
-  void onSaved() {}
+  void onSaved(String? title, String? note) {
+    setState(() {
+      db.notes.add([title, note]);
+    });
+    
+  }
+
   @override
   Widget build(BuildContext context) {
     final screenSize = MediaQuery.of(context).size;
-    List pages = [
-      [EmptyHomepage(screensize: screenSize), NoteDisplay()]
-    ];
+    List pages = [EmptyHomepage(screensize: screenSize), NoteDisplay()];
     return Scaffold(
       appBar: AppBar(
         backgroundColor: const Color.fromARGB(117, 103, 101, 101),
@@ -117,7 +121,8 @@ class _HomeScreenState extends State<HomeScreen> {
                   builder: (context) => AddNoteScreen(
                       controller_note: _controller_note,
                       controller_title: _controller_title,
-                      onSaved: onSaved)));
+                      onSaved: onSaved(
+                          _controller_note.text, _controller_title.text))));
         },
         child: Icon(Icons.add),
         backgroundColor: Colors.grey[850],

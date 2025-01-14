@@ -1,15 +1,16 @@
 import 'package:flutter/material.dart';
+import 'package:truelog/db/database.dart';
 
 class AddNoteScreen extends StatelessWidget {
   final controller_title;
   final controller_note;
-  Function()? onSaved;
-  AddNoteScreen({
-    super.key,
-    required this.controller_note,
-    required this.controller_title,
-    required this.onSaved
-  });
+  VoidCallback onSaved;
+  Database db = new Database();
+  AddNoteScreen(
+      {super.key,
+      required this.controller_note,
+      required this.controller_title,
+      required this.onSaved});
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -32,7 +33,7 @@ class AddNoteScreen extends StatelessWidget {
                   borderRadius: BorderRadius.circular(15)),
               child: IconButton(
                 icon: const Icon(Icons.save),
-                onPressed: onSaved, // Save the note (implement your save logic)
+                onPressed:onSaved(), // Save the note (implement your save logic)
               ),
             ),
           ),

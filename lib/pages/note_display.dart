@@ -1,10 +1,16 @@
 import 'package:flutter/material.dart';
+import 'package:truelog/db/database.dart';
 
 class NoteDisplay extends StatelessWidget {
-  const NoteDisplay({super.key});
+  Database db=new Database();
+ NoteDisplay({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold();
+    return Container(
+      child: ListView.builder(itemCount: db.notes.length,
+      itemBuilder: (context, index) => db.notes[index][0],
+      ),
+    );
   }
 }
