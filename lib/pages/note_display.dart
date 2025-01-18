@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:hive/hive.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 import 'package:truelog/db/database.dart';
+import 'package:truelog/pages/inside_notes.dart';
 
 class NoteDisplay extends StatefulWidget {
   NoteDisplay({super.key});
@@ -11,15 +12,10 @@ class NoteDisplay extends StatefulWidget {
 }
 
 class _NoteDisplayState extends State<NoteDisplay> {
+  int? longpressedindex = null;
   Database db = Database();
-  void delete()
-  {
-
-  }
-  void displaynote()
-  {
-
-  }
+  void delete() {}
+  void displaynote() {}
   @override
   void initState() {
     super.initState();
@@ -50,28 +46,59 @@ class _NoteDisplayState extends State<NoteDisplay> {
       color: const Color.fromARGB(255, 60, 59, 59),
       child: Padding(
         padding: const EdgeInsets.only(top: 10.0),
-        child: ListView.builder(
-          itemCount: db.notes.length,
-          itemBuilder: (context, index) {
-            return Padding(
-              padding: const EdgeInsets.only(left: 6.0, right: 6.0),
-              child: GestureDetector(
-                onLongPress: delete,
-                onTap: displaynote,
-                child: Card(
-                  color: const Color.fromARGB(117, 139, 137, 137),
-                  child: ListTile(
-                      title: Text(
-                    db.notes[index][0] ?? '',
-                    style: TextStyle(
-                        color: const Color.fromARGB(255, 213, 208, 208),
-                        fontWeight: FontWeight.w400,
-                        fontSize: Screenh * 0.030),
-                  )),
-                ),
-              ),
-            );
+        child: GestureDetector(
+          onTapDown: (_) {
+            if (longpressedindex != null) {
+              setState(() {
+                longpressedindex = null;
+              });
+            }
           },
+          child: ListView.builder(
+            itemCount: db.notes.length,
+            itemBuilder: (context, index) {
+              return Padding(
+                  padding: const EdgeInsets.only(left: 6.0, right: 6.0),
+                  child: GestureDetector(
+                    onTap: () {
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => InsideNotes(title: db.notes[index][0],note: db.notes[index][1])));
+                    },
+                    onLongPress: () {
+                      setState(() {
+                        longpressedindex = index;
+                      });
+                    },
+                    child: Card(
+                      color: const Color.fromARGB(117, 139, 137, 137),
+                      child: ListTile(
+                        title: Text(
+                          db.notes[index][0] ?? '',
+                          style: TextStyle(
+                              color: const Color.fromARGB(255, 213, 208, 208),
+                              fontWeight: FontWeight.w400,
+                              fontSize: Screenh * 0.030),
+                        ),
+                        trailing: longpressedindex == index
+                            ? IconButton(
+                                icon: Icon(Icons.delete),
+                                onPressed: () {
+                                  setState(() {
+                                    db.loadData();
+                                    db.notes.removeAt(index);
+                                    db.updateData();
+                                    longpressedindex = null;
+                                  });
+                                },
+                              )
+                            : null,
+                      ),
+                    ),
+                  ));
+            },
+          ),
         ),
       ),
     );
