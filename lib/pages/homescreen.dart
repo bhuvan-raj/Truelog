@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:hive/hive.dart';
+import 'package:hive_flutter/hive_flutter.dart';
 import 'package:truelog/db/database.dart';
 import 'package:truelog/pages/add_note.dart';
 import 'package:truelog/pages/empty_homepage.dart';
@@ -19,22 +20,47 @@ class _HomeScreenState extends State<HomeScreen> {
 
   @override
   void initState() {
-    // noteapp: implement initState
-    if (_myBox.get("NOTES") != null) {
-      index = 1;
-    }
-    super.initState();
+    super.initState(); // Always call super.initState() first
+
+    // Load and check notes
+    db.loadData(); // Load notes from Hive
+
+    setState(() {
+      if (db.notes.isEmpty) {
+        // Check if notes list is empty
+        index = 0; // Show EmptyHomepage
+        print("Notes empty, showing EmptyHomepage");
+      } else {
+        index = 1; // Show NoteDisplay
+        print("Notes exist, showing NoteDisplay");
+      }
+    });
+
+    // Add listener for changes
+    Hive.box('myBox').listenable().addListener(() {
+      db.loadData();
+      setState(() {
+        index = db.notes.isEmpty ? 0 : 1; // Update index based on notes
+        print("Notes changed, index updated to: $index");
+      });
+    });
   }
 
   void onSaved(String? title, String? note) {
     setState(() {
+      print("Before adding - Notes: ${db.notes}");
+      db.loadData();
+    //  db.notes.clear();
       db.notes.add([title, note]);
+      db.updateData();
+      print("After adding - Notes: ${db.notes}");
       _controller_title.clear();
       _controller_note.clear();
-      index = 1;
+      if (index != 1) {
+        index = 1;
+      }
     });
     Navigator.of(context).pop();
-    db.updateData;
   }
 
   @override
