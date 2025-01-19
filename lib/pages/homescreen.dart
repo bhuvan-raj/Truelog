@@ -12,6 +12,7 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
+   final GlobalKey<NoteDisplayState> noteDisplayKey = GlobalKey<NoteDisplayState>();
   int index = 0;
   Database db = Database();
   final _myBox = Hive.box('myBox');
@@ -50,7 +51,7 @@ class _HomeScreenState extends State<HomeScreen> {
     setState(() {
       print("Before adding - Notes: ${db.notes}");
       db.loadData();
-    //  db.notes.clear();
+      //  db.notes.clear();
       db.notes.add([title, note]);
       db.updateData();
       print("After adding - Notes: ${db.notes}");
@@ -66,7 +67,8 @@ class _HomeScreenState extends State<HomeScreen> {
   @override
   Widget build(BuildContext context) {
     final screenSize = MediaQuery.of(context).size;
-    List pages = [EmptyHomepage(screensize: screenSize), NoteDisplay()];
+    final screenH = MediaQuery.of(context).size.height;
+    List pages = [EmptyHomepage(screensize: screenSize),NoteDisplay(key: noteDisplayKey)];
     return Scaffold(
       appBar: AppBar(
         backgroundColor: const Color.fromARGB(117, 103, 101, 101),
@@ -87,7 +89,38 @@ class _HomeScreenState extends State<HomeScreen> {
               child: PopupMenuButton(
                 onSelected: (int value) {
                   if (value == 1) {
-                    
+                    if (index == 0) {
+                      ScaffoldMessenger.of(context).showSnackBar(
+                        SnackBar(
+                          content: Center(
+                            child: Text(
+                              "You haven't added any notes",
+                              style: TextStyle(
+                                  color: Colors.white,
+                                  fontSize: screenH * 0.02),
+                            ),
+                          ),
+                          duration: Duration(seconds: 2),
+                          backgroundColor: Color.fromARGB(162, 81, 80, 80),
+                          behavior: SnackBarBehavior.floating,
+                          margin: EdgeInsets.only(
+                            bottom: MediaQuery.of(context).padding.bottom +
+                                10, // Respects safe area
+                            right: 20,
+                            left: 20,
+                          ),
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(20),
+                          ),
+                        ),
+                      );
+                    } else {
+                      noteDisplayKey.currentState?.setState(() {
+        noteDisplayKey.currentState?.isSelectionMode = true;
+        noteDisplayKey.currentState?.selectedItems = 
+            List.generate(db.notes.length, (_) => false);
+      });
+                    }
                   }
                   if (value == 2) {
                     Navigator.pushNamed(context, '/feedback');
