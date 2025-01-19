@@ -17,6 +17,8 @@ class InsideNotes extends StatefulWidget {
 }
 
 class _InsideNotesState extends State<InsideNotes> {
+  static const String default_Title = 'Untitled note';
+  final FocusNode _titleFocus = FocusNode();  //automatic cursor
   late TextEditingController _titleController;
   late TextEditingController _noteController;
   bool isEditing = false;
@@ -24,7 +26,8 @@ class _InsideNotesState extends State<InsideNotes> {
   @override
   void initState() {
     super.initState();
-    _titleController = TextEditingController(text: widget.title);
+    _titleController = TextEditingController(
+        text: widget.title.isEmpty ? default_Title : widget.title); // title empty condition solved
     _noteController = TextEditingController(text: widget.note);
   }
 
@@ -32,6 +35,7 @@ class _InsideNotesState extends State<InsideNotes> {
   void dispose() {
     _titleController.dispose();
     _noteController.dispose();
+    _titleFocus.dispose();
     super.dispose();
   }
 
@@ -60,7 +64,12 @@ class _InsideNotesState extends State<InsideNotes> {
                   icon: const Icon(Icons.save),
                   onPressed: () {
                     setState(() {
-                      widget.title = _titleController.text;
+                      final newTitle = _titleController.text.trim().isEmpty //title empty condition
+                          ? default_Title
+                          : _titleController.text;
+
+                      widget.title = newTitle;
+                      //  widget.title = _titleController.text;
                       widget.note = _noteController.text;
                       widget.db.loadData;
                       widget.db
@@ -83,7 +92,7 @@ class _InsideNotesState extends State<InsideNotes> {
               padding: const EdgeInsets.all(8.0),
               child: !isEditing
                   ? Text(
-                      widget.title,
+                      widget.title.isEmpty ? default_Title : widget.title, //title empty condition solved
                       style: TextStyle(
                           //  decoration: TextDecoration.underline,
                           //  height: 1.0,
@@ -93,13 +102,15 @@ class _InsideNotesState extends State<InsideNotes> {
                     )
                   : TextField(
                       controller: _titleController,
+                      focusNode: _titleFocus,  // automatic cursor
+                      autofocus: true,         // automatic cursor
                       style: TextStyle(
                         fontSize: 45,
                         fontWeight: FontWeight.w400,
                         color: Colors.white70,
                       ),
                       decoration: InputDecoration(
-                        border: InputBorder.none,
+                        border: UnderlineInputBorder(),
                       ),
                     )),
           Padding(
@@ -128,9 +139,13 @@ class _InsideNotesState extends State<InsideNotes> {
       ),
       floatingActionButton: FloatingActionButton(
         onPressed: () {
-          if (!isEditing) { // if koduthath edit button false anenkil true ayal mathi.reverse venda
-            setState(() {   
+          if (!isEditing) {
+            // if koduthath edit button false anenkil true ayal mathi.reverse venda
+            setState(() {
               isEditing = !isEditing;
+              Future.delayed(Duration(milliseconds: 100), () {
+                _titleFocus.requestFocus(); // requesting autofocus while enabling editing
+              });
             });
           }
         },

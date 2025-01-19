@@ -12,7 +12,8 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
-   final GlobalKey<NoteDisplayState> noteDisplayKey = GlobalKey<NoteDisplayState>();
+  final GlobalKey<NoteDisplayState> noteDisplayKey =
+      GlobalKey<NoteDisplayState>();
   int index = 0;
   Database db = Database();
   final _myBox = Hive.box('myBox');
@@ -49,6 +50,9 @@ class _HomeScreenState extends State<HomeScreen> {
 
   void onSaved(String? title, String? note) {
     setState(() {
+      if (title!.isEmpty) {
+        title = 'Untitled note';   // title empty condition solved
+      }
       print("Before adding - Notes: ${db.notes}");
       db.loadData();
       //  db.notes.clear();
@@ -68,7 +72,10 @@ class _HomeScreenState extends State<HomeScreen> {
   Widget build(BuildContext context) {
     final screenSize = MediaQuery.of(context).size;
     final screenH = MediaQuery.of(context).size.height;
-    List pages = [EmptyHomepage(screensize: screenSize),NoteDisplay(key: noteDisplayKey)];
+    List pages = [
+      EmptyHomepage(screensize: screenSize),
+      NoteDisplay(key: noteDisplayKey)
+    ];
     return Scaffold(
       appBar: AppBar(
         backgroundColor: const Color.fromARGB(117, 103, 101, 101),
@@ -116,10 +123,10 @@ class _HomeScreenState extends State<HomeScreen> {
                       );
                     } else {
                       noteDisplayKey.currentState?.setState(() {
-        noteDisplayKey.currentState?.isSelectionMode = true;
-        noteDisplayKey.currentState?.selectedItems = 
-            List.generate(db.notes.length, (_) => false);
-      });
+                        noteDisplayKey.currentState?.isSelectionMode = true;
+                        noteDisplayKey.currentState?.selectedItems =
+                            List.generate(db.notes.length, (_) => false);
+                      });
                     }
                   }
                   if (value == 2) {

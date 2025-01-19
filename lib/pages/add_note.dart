@@ -34,10 +34,11 @@ class AddNoteScreen extends StatelessWidget {
               child: IconButton(
                 icon: const Icon(Icons.save),
                 onPressed: () {
-          if (onSaved != null) {
-            onSaved!(controller_title.text, controller_note.text); // Pass values
-          }
-        }, // Save the note (implement your save logic)
+                  if (onSaved != null) {
+                    onSaved!(controller_title.text,
+                        controller_note.text); // Pass values
+                  }
+                }, // Save the note (implement your save logic)
               ),
             ),
           ),
