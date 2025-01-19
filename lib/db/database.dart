@@ -12,4 +12,10 @@ class Database {
   void updateData() {
     _myBox.put("NOTES", notes);
   }
+
+  void updateNote(int index, String newTitle, String newNote) {
+    loadData();
+    notes[index] = [newTitle, newNote];
+    updateData();
+  }
 }
