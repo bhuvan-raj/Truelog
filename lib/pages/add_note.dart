@@ -71,7 +71,7 @@ class AddNoteScreen extends StatelessWidget {
                 maxLines: null,
                 keyboardType: TextInputType.multiline,
                 style: const TextStyle(
-                  fontSize: 18,
+                  fontSize: 22,
                   color: Colors.white,
                 ),
                 decoration: const InputDecoration(

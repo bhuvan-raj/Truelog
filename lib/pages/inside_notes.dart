@@ -18,7 +18,7 @@ class InsideNotes extends StatefulWidget {
 
 class _InsideNotesState extends State<InsideNotes> {
   static const String default_Title = 'Untitled note';
-  final FocusNode _titleFocus = FocusNode();  //automatic cursor
+  final FocusNode _titleFocus = FocusNode(); //automatic cursor
   late TextEditingController _titleController;
   late TextEditingController _noteController;
   bool isEditing = false;
@@ -27,7 +27,9 @@ class _InsideNotesState extends State<InsideNotes> {
   void initState() {
     super.initState();
     _titleController = TextEditingController(
-        text: widget.title.isEmpty ? default_Title : widget.title); // title empty condition solved
+        text: widget.title.isEmpty
+            ? default_Title
+            : widget.title); // title empty condition solved
     _noteController = TextEditingController(text: widget.note);
   }
 
@@ -64,7 +66,9 @@ class _InsideNotesState extends State<InsideNotes> {
                   icon: const Icon(Icons.save),
                   onPressed: () {
                     setState(() {
-                      final newTitle = _titleController.text.trim().isEmpty //title empty condition
+                      final newTitle = _titleController.text
+                              .trim()
+                              .isEmpty //title empty condition
                           ? default_Title
                           : _titleController.text;
 
@@ -92,22 +96,23 @@ class _InsideNotesState extends State<InsideNotes> {
               padding: const EdgeInsets.all(8.0),
               child: !isEditing
                   ? Text(
-                      widget.title.isEmpty ? default_Title : widget.title, //title empty condition solved
+                      widget.title.isEmpty
+                          ? default_Title
+                          : widget.title, //title empty condition solved
                       style: TextStyle(
                           //  decoration: TextDecoration.underline,
                           //  height: 1.0,
-                          fontSize: 45,
-                          fontWeight: FontWeight.w400,
-                          color: Colors.white70),
+                          fontSize: 28,
+                          color: Colors.white),
                     )
                   : TextField(
                       controller: _titleController,
-                      focusNode: _titleFocus,  // automatic cursor
-                      autofocus: true,         // automatic cursor
+                      focusNode: _titleFocus, // automatic cursor
+                      autofocus: true, // automatic cursor
                       style: TextStyle(
-                        fontSize: 45,
-                        fontWeight: FontWeight.w400,
-                        color: Colors.white70,
+                        fontSize: 28,
+                        //  fontWeight: FontWeight.w400,
+                        color: Colors.white,
                       ),
                       decoration: InputDecoration(
                         border: UnderlineInputBorder(),
@@ -120,7 +125,7 @@ class _InsideNotesState extends State<InsideNotes> {
                       widget.note,
                       style: TextStyle(
                           fontSize: 22,
-                          fontWeight: FontWeight.w300,
+                          //    fontWeight: FontWeight.w300,
                           color: Colors.white),
                     )
                   : TextField(
@@ -128,7 +133,7 @@ class _InsideNotesState extends State<InsideNotes> {
                       maxLines: null,
                       style: TextStyle(
                         fontSize: 22,
-                        fontWeight: FontWeight.w300,
+                        //  fontWeight: FontWeight.w300,
                         color: Colors.white,
                       ),
                       decoration: InputDecoration(
@@ -144,7 +149,8 @@ class _InsideNotesState extends State<InsideNotes> {
             setState(() {
               isEditing = !isEditing;
               Future.delayed(Duration(milliseconds: 100), () {
-                _titleFocus.requestFocus(); // requesting autofocus while enabling editing
+                _titleFocus
+                    .requestFocus(); // requesting autofocus while enabling editing
               });
             });
           }

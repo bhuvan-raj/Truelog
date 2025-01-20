@@ -50,8 +50,8 @@ class _HomeScreenState extends State<HomeScreen> {
 
   void onSaved(String? title, String? note) {
     setState(() {
-      if (title!.isEmpty) {
-        title = 'Untitled note';   // title empty condition solved
+      if (title!.trim().isEmpty) {
+        title = 'Untitled note'; // title empty condition solved
       }
       print("Before adding - Notes: ${db.notes}");
       db.loadData();
@@ -101,7 +101,7 @@ class _HomeScreenState extends State<HomeScreen> {
                         SnackBar(
                           content: Center(
                             child: Text(
-                              "You haven't added any notes",
+                              "You haven't added any notes yet !",
                               style: TextStyle(
                                   color: Colors.white,
                                   fontSize: screenH * 0.02),
@@ -113,8 +113,8 @@ class _HomeScreenState extends State<HomeScreen> {
                           margin: EdgeInsets.only(
                             bottom: MediaQuery.of(context).padding.bottom +
                                 10, // Respects safe area
-                            right: 20,
-                            left: 20,
+                            right: MediaQuery.of(context).padding.left + 50,
+                            left: MediaQuery.of(context).padding.right + 50,
                           ),
                           shape: RoundedRectangleBorder(
                             borderRadius: BorderRadius.circular(20),
