@@ -1,19 +1,24 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:truelog/pages/tutorial_screen.dart';
+
 class SplashScreen extends StatelessWidget {
   @override
-Widget build(BuildContext context) {
-     final Screenh =MediaQuery.of(context).size.height;
-     Future.delayed(Duration(seconds: 3), () {
-     Navigator.pushReplacementNamed(context,
-     '/home'); //navigator.push is for stacking the current page under the next pushed page
+  Widget build(BuildContext context) {
+    final Screenh = MediaQuery.of(context).size.height;
+    Future.delayed(Duration(seconds: 3), () {
+      Navigator.pushReplacement(
+          context,
+          MaterialPageRoute(
+              builder: (context) =>
+                  TutorialScreen())); //navigator.push is for stacking the current page under the next pushed page
     });
     return Scaffold(
       backgroundColor: Color.fromARGB(117, 103, 101, 101),
       body: Align(
         alignment: Alignment.center,
         child: Padding(
-          padding:  EdgeInsets.only(top: Screenh*0.3),
+          padding: EdgeInsets.only(top: Screenh * 0.3),
           child: Column(
             children: [
               SizedBox(height: 20),
@@ -34,7 +39,9 @@ Widget build(BuildContext context) {
                   );
                 },
               ),
-              SizedBox(height: 18), //to add space btw name and moto              // Motto Text
+              SizedBox(
+                  height:
+                      18), //to add space btw name and moto              // Motto Text
               TweenAnimationBuilder(
                 tween: Tween<double>(begin: 0, end: 1),
                 duration: const Duration(seconds: 2),
