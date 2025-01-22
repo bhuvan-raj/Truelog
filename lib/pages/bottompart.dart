@@ -3,11 +3,25 @@ import 'package:url_launcher/url_launcher.dart';
 
 class Bottompart extends StatelessWidget {
   Bottompart({super.key});
-  final Uri _url1 = Uri.parse('https://www.youtube.com');
-  final Uri _url2 = Uri.parse('https://www.instagram.com');
-  final Uri _url3 = Uri.parse('https://www.facebook.com');
+  final Uri _url1 = Uri.parse('https://x.com/Devfusionstudio');
+  final Uri _url2 = Uri.parse('https://www.instagram.com/devfusion_studio/');
+  void _launchEmail() async {
+    final Uri emailUri = Uri(
+      scheme: 'mailto',
+      path: 'developerfusionstudio@gmail.com',
+    );
+
+    // If the email link can be launched, open it
+    if (await canLaunchUrl(emailUri)) {
+      await launchUrl(emailUri);
+    } else {
+      throw 'Could not launch email client';
+    }
+  }
+
   // Method to launch URLs
-  Future<void> _launchURL(Uri url) async {  // asynchronous function for launching url
+  Future<void> _launchURL(Uri url) async {
+    // asynchronous function for launching url
     if (!await launchUrl(url)) {
       throw 'Could not launch $url';
     }
@@ -45,16 +59,14 @@ class Bottompart extends StatelessWidget {
               },
             ),
             IconButton(
-              icon: Image.asset(
-                'assets/gmail.png',
-                height: 50, // Resize social media icon
-                width: 50,
-              ),
-              onPressed: () {
-                _launchURL(_url3);
+                icon: Image.asset(
+                  'assets/gmail.png',
+                  height: 50, // Resize social media icon
+                  width: 50,
+                ),
+                onPressed: _launchEmail
                 // Add action for Gmail
-              },
-            ),
+                ),
           ],
         ),
       ),
