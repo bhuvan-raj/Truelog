@@ -1,8 +1,6 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
-import 'package:hive/hive.dart';
-import 'package:truelog/pages/homescreen.dart';
 import 'package:truelog/pages/tutorial_page.dart';
 /*
   This page is for further reference of tutorial for users.
@@ -22,7 +20,7 @@ class _TutorialRefState extends State<TutorialRef> {
   int currentpage = 0;
   @override
   void initState() {
-    // TODO: implement initState
+    // implement initState
     super.initState();
     _timer = Timer.periodic(Duration(seconds: 3), (Timer timer) {
       if (currentpage < 3) {
@@ -37,7 +35,7 @@ class _TutorialRefState extends State<TutorialRef> {
 
   @override
   void dispose() {
-    // TODO: implement dispose
+    //  implement dispose
     super.dispose();
     _timer?.cancel();
     _pageController.dispose();
@@ -67,7 +65,7 @@ class _TutorialRefState extends State<TutorialRef> {
           });
         },
         children: [
-          TutorialPage(title: 'Welcome to Notes App', content: 'Here you can take notes.'),
+          TutorialPage(title: 'Welcome to TrueLog', content: 'Here you can take notes.'),
           TutorialPage(title: 'Double Tap to View',
               content: 'Double tap the title of a note to view its contents.'),
           TutorialPage(title: 'Long Press to Delete',

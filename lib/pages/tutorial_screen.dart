@@ -1,5 +1,4 @@
 import 'dart:async';
-
 import 'package:flutter/material.dart';
 import 'package:hive/hive.dart';
 import 'package:truelog/pages/homescreen.dart';
@@ -20,7 +19,7 @@ class _TutorialScreenState extends State<TutorialScreen> {
   final box = Hive.box('myBox'); //using hive for first time opening only
   @override
   void initState() {
-    // TODO: implement initState
+    // implement initState
     super.initState();
     box.put('firstLaunch',
         false); // if the execution enters this page,firstLaunch is set to false.It will never return to true
@@ -39,7 +38,7 @@ class _TutorialScreenState extends State<TutorialScreen> {
   @override
   void dispose() {
     // using dispose function for efficient memory management
-    // TODO: implement dispose
+    //  implement dispose
     super.dispose();
     _timer?.cancel();
     _pageController.dispose();
@@ -70,7 +69,7 @@ class _TutorialScreenState extends State<TutorialScreen> {
         children: [
           // using tutorialPage,a separate page which contains the title and content.Reusability purpose
           TutorialPage(
-              title: 'Welcome to Notes App',
+              title: 'Welcome to TrueLog',
               content: 'Here you can take notes.'),
           TutorialPage(
               title: 'Double Tap to View',

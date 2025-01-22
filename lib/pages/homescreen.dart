@@ -53,12 +53,12 @@ class _HomeScreenState extends State<HomeScreen> {
       if (title!.trim().isEmpty) {
         title = 'Untitled note'; // title empty condition solved
       }
-      print("Before adding - Notes: ${db.notes}");
+      print("Before adding - Notes: ${db.notes}"); //for testing
       db.loadData();
       //  db.notes.clear();
       db.notes.add([title, note]);
       db.updateData();
-      print("After adding - Notes: ${db.notes}");
+      print("After adding - Notes: ${db.notes}"); // for testing
       _controller_title.clear();
       _controller_note.clear();
       if (index != 1) {
@@ -97,7 +97,7 @@ class _HomeScreenState extends State<HomeScreen> {
                 onSelected: (int value) {
                   if (value == 1) {
                     if (index == 0) {
-                      ScaffoldMessenger.of(context).showSnackBar(
+                      ScaffoldMessenger.of(context).showSnackBar(   //snackbar for empty page
                         SnackBar(
                           content: Center(
                             child: Text(
@@ -122,7 +122,7 @@ class _HomeScreenState extends State<HomeScreen> {
                         ),
                       );
                     } else {
-                      noteDisplayKey.currentState?.setState(() {
+                      noteDisplayKey.currentState?.setState(() {           // code for select option
                         noteDisplayKey.currentState?.isSelectionMode = true;
                         noteDisplayKey.currentState?.selectedItems =
                             List.generate(db.notes.length, (_) => false);

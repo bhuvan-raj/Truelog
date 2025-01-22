@@ -7,7 +7,7 @@ class Bottompart extends StatelessWidget {
   final Uri _url2 = Uri.parse('https://www.instagram.com');
   final Uri _url3 = Uri.parse('https://www.facebook.com');
   // Method to launch URLs
-  Future<void> _launchURL(Uri url) async {
+  Future<void> _launchURL(Uri url) async {  // asynchronous function for launching url
     if (!await launchUrl(url)) {
       throw 'Could not launch $url';
     }

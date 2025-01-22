@@ -27,7 +27,7 @@ class FeedBack extends StatelessWidget {
           },
         ),
       ),
-      body: Stack(
+      body: Stack(   // for displaying text over image
         children: [
           Positioned(
             left: 0,
@@ -58,7 +58,7 @@ class FeedBack extends StatelessWidget {
               children: [
                 SizedBox(
                     height:
-                        120), // aa container full ayit kurachoode thazhott idan
+                        120), // to lower the container a bit
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceAround,
                   children: [
@@ -67,7 +67,7 @@ class FeedBack extends StatelessWidget {
                       height: screenH * 0.30,
                       width: screenW * 0.20,
                     ),
-                    const SizedBox(
+                    const SizedBox(   // spacing between two images
                       height: 30,
                       width: 200,
                     ),
@@ -84,7 +84,7 @@ class FeedBack extends StatelessWidget {
               ],
             ),
           ),
-          Bottompart()
+          Bottompart()    //bottom part of the page is a separate page
         ],
       ),
     );
