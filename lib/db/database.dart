@@ -6,7 +6,7 @@ class Database {
 
 // if we are trying to open for the first time ever
   void loadData() {
-    notes = _myBox.get("NOTES");
+    notes = _myBox.get("NOTES") ?? [];
   }
 
   void updateData() {
