@@ -1,18 +1,41 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:hive/hive.dart';
+import 'package:truelog/pages/homescreen.dart';
 import 'package:truelog/pages/tutorial_screen.dart';
 
-class SplashScreen extends StatelessWidget {
+class SplashScreen extends StatefulWidget {
+  @override
+  State<SplashScreen> createState() => _SplashScreenState();
+}
+
+class _SplashScreenState extends State<SplashScreen> {
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    check_launch();
+  }
+
+  void check_launch() async {
+    final box = Hive.box('myBox');
+    bool islaunch = box.get('firstLaunch', defaultValue: true);
+    if (islaunch) {
+      Future.delayed(Duration(seconds: 3), () {
+        Navigator.pushReplacement(
+            context, MaterialPageRoute(builder: (context) => TutorialScreen()));
+      });
+    } else {
+      Future.delayed(Duration(seconds: 3), () {
+        Navigator.pushReplacement(
+            context, MaterialPageRoute(builder: (context) => HomeScreen()));
+      });
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     final Screenh = MediaQuery.of(context).size.height;
-    Future.delayed(Duration(seconds: 3), () {
-      Navigator.pushReplacement(
-          context,
-          MaterialPageRoute(
-              builder: (context) =>
-                  TutorialScreen())); //navigator.push is for stacking the current page under the next pushed page
-    });
     return Scaffold(
       backgroundColor: Color.fromARGB(117, 103, 101, 101),
       body: Align(

@@ -130,6 +130,9 @@ class _HomeScreenState extends State<HomeScreen> {
                     }
                   }
                   if (value == 2) {
+                    Navigator.pushNamed(context, '/tutorials');
+                  }
+                  if (value == 3) {
                     Navigator.pushNamed(context, '/feedback');
                   }
                 },
@@ -167,12 +170,23 @@ class _HomeScreenState extends State<HomeScreen> {
                         value: 2,
                         child: Row(
                           children: [
+                            Icon(Icons.help),
+                            Padding(
+                              padding: const EdgeInsets.only(left: 4),
+                              child: Text("Tutorials"),
+                            )
+                          ],
+                        )),
+                    PopupMenuItem(
+                        value: 3,
+                        child: Row(
+                          children: [
                             Icon(
                               Icons.favorite,
                               color: Colors.red,
                             ),
                             Padding(
-                              padding: EdgeInsets.only(left: 4),
+                              padding: EdgeInsets.only(left: 6),
                               child: Text("Feedback/contributions"),
                             )
                           ],
