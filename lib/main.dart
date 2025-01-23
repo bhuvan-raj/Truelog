@@ -18,7 +18,11 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      theme: ThemeData.dark(),
+      theme: ThemeData.dark().copyWith(
+        textTheme: ThemeData.dark().textTheme.apply(
+          fontFamily: 'Merienda'
+        )
+      ),
       home: SplashScreen(), // Set SplashScreen as the initial screen
       routes: {
         '/home': (context) => HomeScreen(),

@@ -83,6 +83,7 @@ class _HomeScreenState extends State<HomeScreen> {
         title: Text('TrueLog',
             style: TextStyle(
                 fontSize: 20,
+                fontFamily: 'YourCustomFont',
                 fontWeight: FontWeight.bold,
                 color: Colors.white)),
         actions: [
@@ -97,7 +98,8 @@ class _HomeScreenState extends State<HomeScreen> {
                 onSelected: (int value) {
                   if (value == 1) {
                     if (index == 0) {
-                      ScaffoldMessenger.of(context).showSnackBar(   //snackbar for empty page
+                      ScaffoldMessenger.of(context).showSnackBar(
+                        //snackbar for empty page
                         SnackBar(
                           content: Center(
                             child: Text(
@@ -122,7 +124,8 @@ class _HomeScreenState extends State<HomeScreen> {
                         ),
                       );
                     } else {
-                      noteDisplayKey.currentState?.setState(() {           // code for select option
+                      noteDisplayKey.currentState?.setState(() {
+                        // code for select option
                         noteDisplayKey.currentState?.isSelectionMode = true;
                         noteDisplayKey.currentState?.selectedItems =
                             List.generate(db.notes.length, (_) => false);

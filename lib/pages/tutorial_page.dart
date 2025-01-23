@@ -17,6 +17,7 @@ class TutorialPage extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.center,
       children: [
         Text(
+          textAlign: TextAlign.center,
           title,
           style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
         ),

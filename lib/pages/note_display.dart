@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:hive/hive.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 import 'package:truelog/db/database.dart';
 import 'package:truelog/pages/inside_notes.dart';
+
+double screenH = 0;
+double screenW = 0;
 
 class NoteDisplay extends StatefulWidget {
   const NoteDisplay({super.key});
@@ -38,12 +40,14 @@ class NoteDisplayState extends State<NoteDisplay> {
 
   bool isDeleteButtonTapped(TapDownDetails details) {
     final tapPosition = details.globalPosition;
-    return tapPosition.dx > MediaQuery.of(context).size.width - 200;
+    return tapPosition.dx > MediaQuery.of(context).size.width - 100;
+    // region of delete button adjusted
   }
 
   @override
   Widget build(BuildContext context) {
-    final Screenh = MediaQuery.of(context).size.height;
+    screenH = MediaQuery.of(context).size.height;
+    screenW = MediaQuery.of(context).size.width;
     return Scaffold(
       appBar: isSelectionMode
           ? AppBar(
@@ -53,7 +57,8 @@ class NoteDisplayState extends State<NoteDisplay> {
                 onPressed: () {
                   setState(() {
                     isSelectionMode = false;
-                    selectedItems = List.generate(db.notes.length, (_) => false);
+                    selectedItems =
+                        List.generate(db.notes.length, (_) => false);
                   });
                 },
               ),
@@ -79,7 +84,8 @@ class NoteDisplayState extends State<NoteDisplay> {
                       }
                       db.updateData();
                       isSelectionMode = false;
-                      selectedItems = List.generate(db.notes.length, (_) => false);
+                      selectedItems =
+                          List.generate(db.notes.length, (_) => false);
                     });
                   },
                 ),
@@ -151,7 +157,7 @@ class NoteDisplayState extends State<NoteDisplay> {
                           style: TextStyle(
                               color: const Color.fromARGB(255, 213, 208, 208),
                               fontWeight: FontWeight.w400,
-                              fontSize: Screenh * 0.030),
+                              fontSize: screenH * 0.030),
                         ),
                         trailing: longpressedindex == index && !isSelectionMode
                             ? IconButton(

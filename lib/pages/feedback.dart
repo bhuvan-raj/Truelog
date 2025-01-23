@@ -27,14 +27,15 @@ class FeedBack extends StatelessWidget {
           },
         ),
       ),
-      body: Stack(   // for displaying text over image
+      body: Stack(
+        // for displaying text over image
         children: [
           Positioned(
             left: 0,
             right: 0,
             top: screenH * 0.325,
             child: Container(
-              padding: const EdgeInsets.all(20),
+              padding: EdgeInsets.all(screenH * 0.02),
               decoration: BoxDecoration(
                 color: Colors.grey[800],
                 borderRadius: BorderRadius.circular(30),
@@ -57,8 +58,7 @@ class FeedBack extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.start,
               children: [
                 SizedBox(
-                    height:
-                        120), // to lower the container a bit
+                    height: screenH * 0.133), // to lower the container a bit
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceAround,
                   children: [
@@ -67,9 +67,10 @@ class FeedBack extends StatelessWidget {
                       height: screenH * 0.30,
                       width: screenW * 0.20,
                     ),
-                    const SizedBox(   // spacing between two images
+                    SizedBox(
+                      // spacing between two images
                       height: 30,
-                      width: 200,
+                      width: screenW * 0.5,
                     ),
                     Padding(
                       padding: const EdgeInsets.only(top: 15.0),
@@ -84,7 +85,7 @@ class FeedBack extends StatelessWidget {
               ],
             ),
           ),
-          Bottompart()    //bottom part of the page is a separate page
+          Bottompart() //bottom part of the page is a separate page
         ],
       ),
     );
