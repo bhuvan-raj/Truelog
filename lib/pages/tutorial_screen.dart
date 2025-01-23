@@ -1,8 +1,8 @@
 import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:hive/hive.dart';
-import 'package:truelog/pages/homescreen.dart';
-import 'package:truelog/pages/tutorial_page.dart';
+import 'package:TrueLog/pages/homescreen.dart';
+import 'package:TrueLog/pages/tutorial_page.dart';
 
 class TutorialScreen extends StatefulWidget {
   TutorialScreen({super.key});

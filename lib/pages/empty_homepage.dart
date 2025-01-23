@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:truelog/pages/note_display.dart';
+import 'package:TrueLog/pages/note_display.dart';
 
 class EmptyHomepage extends StatelessWidget {
   final screensize;

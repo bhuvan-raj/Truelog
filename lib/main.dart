@@ -1,10 +1,10 @@
 // ignore_for_file: sort_child_properties_last
 import 'package:flutter/material.dart';
 import 'package:hive_flutter/hive_flutter.dart';
-import 'package:truelog/pages/feedback.dart';
-import 'package:truelog/pages/homescreen.dart';
-import 'package:truelog/pages/splash_screen.dart';
-import 'package:truelog/pages/tutorial_ref.dart';
+import 'package:TrueLog/pages/feedback.dart';
+import 'package:TrueLog/pages/homescreen.dart';
+import 'package:TrueLog/pages/splash_screen.dart';
+import 'package:TrueLog/pages/tutorial_ref.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();

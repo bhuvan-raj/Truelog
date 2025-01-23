@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:hive_flutter/hive_flutter.dart';
-import 'package:truelog/db/database.dart';
-import 'package:truelog/pages/inside_notes.dart';
+import 'package:TrueLog/db/database.dart';
+import 'package:TrueLog/pages/inside_notes.dart';
 
 double screenH = 0;
 double screenW = 0;

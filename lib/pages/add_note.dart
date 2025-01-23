@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:truelog/db/database.dart';
+import 'package:TrueLog/db/database.dart';
 
 class AddNoteScreen extends StatelessWidget {
   final controller_title;

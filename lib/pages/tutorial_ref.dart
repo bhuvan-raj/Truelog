@@ -1,7 +1,7 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
-import 'package:truelog/pages/tutorial_page.dart';
+import 'package:TrueLog/pages/tutorial_page.dart';
 /*
   This page is for further reference of tutorial for users.
   If they find it difficult to remember the gestures for various operations like deletion,display,etc.

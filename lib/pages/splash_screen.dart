@@ -1,8 +1,8 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:hive/hive.dart';
-import 'package:truelog/pages/homescreen.dart';
-import 'package:truelog/pages/tutorial_screen.dart';
+import 'package:TrueLog/pages/homescreen.dart';
+import 'package:TrueLog/pages/tutorial_screen.dart';
 
 class SplashScreen extends StatefulWidget {
   @override

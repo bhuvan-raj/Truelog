@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:hive/hive.dart';
 import 'package:hive_flutter/hive_flutter.dart';
-import 'package:truelog/db/database.dart';
-import 'package:truelog/pages/add_note.dart';
-import 'package:truelog/pages/empty_homepage.dart';
-import 'package:truelog/pages/note_display.dart';
+import 'package:TrueLog/db/database.dart';
+import 'package:TrueLog/pages/add_note.dart';
+import 'package:TrueLog/pages/empty_homepage.dart';
+import 'package:TrueLog/pages/note_display.dart';
 
 class HomeScreen extends StatefulWidget {
   @override

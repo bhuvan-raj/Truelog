@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:truelog/pages/bottompart.dart';
+import 'package:TrueLog/pages/bottompart.dart';
 
 class FeedBack extends StatelessWidget {
   @override
