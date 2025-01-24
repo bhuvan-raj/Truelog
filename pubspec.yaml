@@ -1,5 +1,6 @@
 name: TrueLog
-description: A new Flutter project.
+description: A Simple and user friendly notes app which works currently on android devices.
+             Created by developer fusion studio,a collaborative workspace of Bhuvan Raj and Abhinand Ullas
 
 publish_to: 'none' # Remove this line if you wish to publish to pub.dev
 
